@@ -1,0 +1,24 @@
+variant: fcos
+version: 1.0.0
+passwd:
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEA0tna9BuAepCv0kS2UTBSUh0rDyEZQ4Ev6JfgGlfli4P2YFUqAAoHSrTP4HREmpG8yOLp3OLpsidhEAAWNTFcnoiMR0+C7GDVtGa/J+ZQzNboMBYFutfASmyZSCasiE+I5ry4Kh6ddnt3Kx533edNYuyt31Wcl44TVvgNUnklq+lF/XuuQurYln/IDJ5aYTCra05KDvjQGERij029vFbggA2Z3JJv6t+oysLGOrEu2Z5FRdLF30YJWnZeifsLJXk/i/kPcgUOoIAOVP0bzb+gX93yBnalPNNkEg77CPBPuMaRVDVe67/PbXRSHpl0/ww4cgURBy4cS23ly1U/kLctJQ== rsa-key-20200410"
+storage:
+  directories:
+    - path: /opt/bin
+      overwrite: true
+      mode: 0755
+  files:
+    - path: /opt/bin/docker-compose
+      overwrite: true
+      contents:
+        source: https://github.com/docker/compose/releases/download/1.24.1/docker-compose-Linux-x86_64
+      mode: 0755
+      
+    - path: /home/core/.bash_profile
+      overwrite: false
+      append:
+        - inline: "PATH=$PATH:/opt/bin"
+      mode: 0644
